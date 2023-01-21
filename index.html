@@ -1,0 +1,29 @@
+function getKeyAndMove(e) {
+    let key_code = e.which || e.keyCode;
+    switch (key_code) {
+        case 37: 
+            moveLeft();
+            break;
+        case 38: 
+            moveUp();
+            break;
+        case 39:
+            moveRight();
+            break;
+        case 40: 
+            moveDown();
+            break;
+    }
+}
+function moveLeft() {
+    c.style.left = parseInt(c.style.left) - 25 + "px";
+}
+function moveUp() {
+    c.style.top = parseInt(c.style.top) - 25 + "px";
+}
+function moveRight() {
+    c.style.left = parseInt(c.style.left) + 25 + "px";
+}
+function moveDown() {
+    c.style.top = parseInt(c.style.top) + 25 + "px";
+}
