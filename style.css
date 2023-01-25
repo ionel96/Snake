@@ -1,0 +1,48 @@
+#box {
+    width: 450px;
+    height: 425px;
+    position: relative;
+    left: 0 auto;
+    top: 10px;
+    margin: 0 auto;
+    background: green;
+}
+
+#btn {
+    background-color: #4CAF50;
+    padding: 17px 52px; 
+    font-size: 25px;
+    margin-left: 55px
+}
+
+#dialog {
+    left: 24px;
+    top: 100px;
+    width: 270px;
+    height: 240px;
+    background: rgb(56, 141, 253);
+
+}
+
+#food {
+    position: absolute;
+}
+
+#board {
+    background: rgba(14, 83, 7, 0.834);
+    width: 450px;
+    height: 40px;
+}
+
+#obj {
+    background: rgba(14, 83, 7, 0.834);
+    display: block;
+    margin: 0 auto;
+}
+
+#snake {
+    background: blue;
+    position: absolute;
+    width: 23px;
+    height: 23px;
+}
