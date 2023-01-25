@@ -1,29 +1,24 @@
-function getKeyAndMove(e) {
-    let key_code = e.which || e.keyCode;
-    switch (key_code) {
-        case 37: 
-            moveLeft();
-            break;
-        case 38: 
-            moveUp();
-            break;
-        case 39:
-            moveRight();
-            break;
-        case 40: 
-            moveDown();
-            break;
-    }
-}
-function moveLeft() {
-    c.style.left = parseInt(c.style.left) - 25 + "px";
-}
-function moveUp() {
-    c.style.top = parseInt(c.style.top) - 25 + "px";
-}
-function moveRight() {
-    c.style.left = parseInt(c.style.left) + 25 + "px";
-}
-function moveDown() {
-    c.style.top = parseInt(c.style.top) + 25 + "px";
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+</head>
+    <br><br><br>
+    <body onkeydown="getKeyAndMove(event)">
+        <div id="box">
+            <canvas id="board"></canvas>
+            <canvas id="obj"></canvas>
+            <div id="snake"></div>
+            <div id="food" style="left: 365px; top: 220px;">🍎</div>
+            <h2 id="tx" style="margin-inline-start: 180px"></h2>
+            <dialog id="dialog" open>
+                <h1 style="font-size: 350%; margin-inline-start: 40px;">SNAKE</h1>
+                <form method="dialog">
+                  <button id="btn" onclick="createGameBoard()">PLAY</button>
+                </form>
+            </dialog>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
