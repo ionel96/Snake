@@ -1,11 +1,47 @@
-#box {
-    width: 450px;
-    height: 425px;
+#board {
+    text-align: center;
+    width: 550px;
+    height: 550px;
     position: relative;
-    left: 0 auto;
-    top: 10px;
     margin: 0 auto;
     background: green;
+}
+
+#displayFrame {
+    width: 550px;
+    height: 50px;
+    background: rgb(26, 113, 17);
+    margin: auto;
+}
+
+#fruit {
+    font-size: 270%; 
+    margin-inline-start: 30px; 
+    margin-top: 0px;
+    width: 50px;
+}
+
+#counter {
+    font-size: 200%; 
+    margin-block-start: -40px;
+    margin-inline-start: 100px;
+    width: 50px;
+    height: auto;
+}
+
+#output {
+    font-size: 200%; 
+    margin-block-start: -70px;
+    margin-inline-start: 200px;
+}
+
+#box {
+    position: relative;
+    top: 25px;
+    left: 10px;
+    display: inline-flex;
+    flex-flow: row wrap;
+    font-size: 1.7em;
 }
 
 #btn {
@@ -13,6 +49,11 @@
     padding: 17px 52px; 
     font-size: 25px;
     margin-left: 55px
+}
+
+#h1Dialog {
+    font-size: 350%; 
+    margin-inline-start: 40px;
 }
 
 #dialog {
@@ -24,25 +65,6 @@
 
 }
 
-#food {
-    position: absolute;
-}
-
-#board {
-    background: rgba(14, 83, 7, 0.834);
-    width: 450px;
-    height: 40px;
-}
-
-#obj {
-    background: rgba(14, 83, 7, 0.834);
-    display: block;
-    margin: 0 auto;
-}
-
-#snake {
-    background: blue;
-    position: absolute;
-    width: 23px;
-    height: 23px;
+#box .cell {
+  border: solid green 0.1px;
 }
