@@ -3,19 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
-</head>
-    <br><br><br>
+    </head>
     <body onkeydown="getKeyAndMove(event)">
-        <div id="box">
-            <canvas id="board"></canvas>
-            <canvas id="obj"></canvas>
-            <div id="snake"></div>
-            <div id="food" style="left: 365px; top: 220px;">🍎</div>
-            <h2 id="tx" style="margin-inline-start: 180px"></h2>
+        <div id="displayFrame">
+            <div id="fruit">🍎</div>
+            <h3 id="counter">0</h3>
+            <div id="output"></div>
+        </div>
+        <div id="board">
+            <div id="box" class="cell"></div>
             <dialog id="dialog" open>
-                <h1 style="font-size: 350%; margin-inline-start: 40px;">SNAKE</h1>
+                <h1 id ="h1Dialog">SNAKE</h1>
                 <form method="dialog">
-                  <button id="btn" onclick="createGameBoard()">PLAY</button>
+                <button id="btn" onclick="moveFood()">PLAY</button>
                 </form>
             </dialog>
         </div>
