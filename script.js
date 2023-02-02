@@ -1,6 +1,6 @@
 onload = (createGameBoard);
 let idUp = false, idDown = false, idLeft = false, idRight = false;
-let gameState = true, fruitEaten = 0, idMove = false;
+let gameState = true, fruitEaten = 0, setMove = false;
 let currentPos = [], linePos = 8, columnPos = 8;
 const gameBoard = Array.from(Array(16), () => new Array(16).fill(0));
 
@@ -50,8 +50,8 @@ function getKeyAndMove(e) {
 }
 
 function move(idKey) {
-    clearInterval(idMove);
-    idMove = setInterval(function() {
+    clearInterval(setMove);
+    setMove = setInterval(function() {
         if (idKey == 37) {
             --columnPos;
         } else if (idKey == 38) {
@@ -76,7 +76,7 @@ function move(idKey) {
 function checkPosition(posX, posY) {
     if (posX < 0 || posX > 15 || posY < 0 || posY > 15 || gameBoard[linePos][columnPos]) {
         gameState = false;
-        clearInterval(idMove);
+        clearInterval(setMove);
         document.getElementById('output').innerHTML = "Game Over";
         return;
     } else {
