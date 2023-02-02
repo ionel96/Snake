@@ -1,6 +1,6 @@
 onload = (createGameBoard);
 let idUp = false, idDown = false, idLeft = false, idRight = false;
-let gameState = true, fruitEaten = 0;
+let gameState = true, fruitEaten = 0, idMove = false;
 let currentPos = [], linePos = 8, columnPos = 8;
 const gameBoard = Array.from(Array(16), () => new Array(16).fill(0));
 
@@ -26,80 +26,57 @@ function createGameBoard() {
     }
     box.style.width = `${(30 * 16) + 2 * (16)}px`;
     document.getElementById(linePos + " " + columnPos).innerHTML = "🟦";
-    currentPos.unshift(8, 8);
+    currentPos.unshift(linePos, columnPos);
     gameBoard[linePos][columnPos] = 1;
 }
 
 function getKeyAndMove(e) {
     if (gameState) {
         let key_code = e.which || e.keyCode;
-        switch (key_code) {
-            case 37: 
-                moveLeft();
-                break;
-            case 38: 
-                moveUp();
-                break;
-            case 39:
-                moveRight();
-                break;
-            case 40: 
-                moveDown();
-                break;
+        if (key_code == 37 && !idRight && !idLeft) {
+            move(key_code);
+            idLeft = true;
+        } else if (key_code == 38 && !idDown && !idUp) {
+            move(key_code);
+            idUp = true;
+        } else if (key_code == 39 && !idLeft && !idRight) {
+            move(key_code);
+            idRight = true;
+        } else if (key_code == 40 && !idUp && !idDown) {
+            move(key_code);
+            idDown = true;
         }
     }
 }
 
-function moveLeft() {
-    if (!idRight && !idLeft) {
-        idLeft = setInterval(function() {
-            currentPos.unshift(linePos, --columnPos);
-            checkPosition(linePos, columnPos);
-        },200);
-        deleteRange(idUp, idDown);
+function move(idKey) {
+    clearInterval(idMove);
+    idMove = setInterval(function() {
+        if (idKey == 37) {
+            --columnPos;
+        } else if (idKey == 38) {
+            --linePos;
+        } else if (idKey == 39) {
+            ++columnPos;
+        } else {
+            ++linePos;
+        }
+        currentPos.unshift(linePos, columnPos);
+        checkPosition(linePos, columnPos);
+    }, 200);
+    if (idKey == 37 || idKey == 39) {
         idUp = false;
         idDown = false;
-    }
-}
-function moveUp() {
-    if (!idDown && !idUp) {
-        idUp = setInterval(function() {
-            currentPos.unshift(--linePos, columnPos);
-            checkPosition(linePos, columnPos);
-        },200);
-        deleteRange(idRight, idLeft);
+    } else {
         idLeft = false;
         idRight = false;
-    }
-}
-function moveRight() {
-    if (!idLeft && !idRight) {
-        idRight = setInterval(function() {
-            currentPos.unshift(linePos, ++columnPos);
-            checkPosition(linePos, columnPos);
-        },200);
-        deleteRange(idUp, idDown);
-        idUp = false;
-        idDown = false;
-    }
-}
-function moveDown() {
-    if (!idUp && !idDown) {
-        idDown = setInterval(function() {
-            currentPos.unshift(++linePos, columnPos);
-            checkPosition(linePos, columnPos);
-        },200);
-        deleteRange(idLeft, idRight);
-        idRight = false;
-        idLeft = false;
     }
 }
 
 function checkPosition(posX, posY) {
     if (posX < 0 || posX > 15 || posY < 0 || posY > 15 || gameBoard[linePos][columnPos]) {
         gameState = false;
-        deleteRange(idUp, idDown);
-        deleteRange(idLeft, idRight);
+        clearInterval(idMove);
         document.getElementById('output').innerHTML = "Game Over";
         return;
     } else {
@@ -134,9 +111,4 @@ function deleteItems() {
     gameBoard[currentPos[currentPos.length - 2]][currentPos[currentPos.length - 1]] = 0;
     currentPos.pop();
     currentPos.pop();
-}
-
-function deleteRange(firstInterval, secInterval) {
-    clearInterval(firstInterval);
-    clearInterval(secInterval);
 }
