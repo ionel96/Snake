@@ -93,17 +93,15 @@ function checkPosition(posX, posY) {
 }
 
 function moveFood() {
-    for (let j = 0; j < 5; ++j) {
-        let line = Math.floor(Math.random() * 15);
-        let colum = Math.floor(Math.random() * 15);
-        if (gameBoard[line][colum] == 1) {
-            continue;
-        }
-        document.getElementById(line + " " + colum).innerHTML = "🍎";
-        window.x = line;
-        window.y = colum;
-        break;
+    let line = Math.floor(Math.random() * 15);
+    let colum = Math.floor(Math.random() * 15);
+    while (gameBoard[line][colum] == 1) {
+        line = Math.floor(Math.random() * 15);
+        colum = Math.floor(Math.random() * 15);
     }
+    document.getElementById(line + " " + colum).innerHTML = "🍎";
+    window.x = line;
+    window.y = colum;
 }
 
 function deleteItems() {
